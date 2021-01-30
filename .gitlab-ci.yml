@@ -1,0 +1,19 @@
+image: node:12.18.3
+
+before_script:
+  - npm install
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+    
+pre_script:install:
+  script:
+    - npm install
+
+test:lint:
+  script:
+    - npm run lint
+
