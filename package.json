@@ -21,6 +21,7 @@
   "author": "Yahiya",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
     "awesome-phonenumber": "^2.45.0",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
