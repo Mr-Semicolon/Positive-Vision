@@ -4,7 +4,6 @@ const date = new Date();
 
 exports.createUserSchema = {
   name: Joi.string().min(6).max(255).trim().required(),
-  mobile: Joi.string().required(),
   password: Joi.string().min(8).max(255).required(),
   password_confirmation: Joi.any()
     .valid(Joi.ref("password"))
@@ -16,5 +15,6 @@ exports.createUserSchema = {
   email: Joi.string().email().max(255).required(),
   address: Joi.string().max(255).required(),
   socialMedia: Joi.string().max(255).required(),
+  image: Joi.string().max(3000).required(),
   facebookOrTwitter: Joi.string().valid("Facebook", "Twitter").required(),
 };
