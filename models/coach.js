@@ -1,7 +1,7 @@
 const { DEFAULT_USER_IMAGE_URL } = require("../config/serverConfig");
 
 module.exports = function (sequelize, DataTypes) {
-  const choach = sequelize.define(
+  const coach = sequelize.define(
     "Coach",
     {
         id: {
@@ -12,11 +12,11 @@ module.exports = function (sequelize, DataTypes) {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
@@ -25,40 +25,39 @@ module.exports = function (sequelize, DataTypes) {
         },
         description:{
             type: DataTypes.STRING,
-            allowNull: true,
-    
+            allowNull: false,
         },
         experienceLevel:{
-            typ: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull:false,
         },
         phoneNumber: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         image: {
           type:  DataTypes.STRING,
           allowNull: true,
           defaultValue: DEFAULT_USER_IMAGE_URL,
         }, 
+        isActiveAccount: {
+          type: DataTypes.BOOLEAN,
+          allowNull: true,
+          defaultValue: true,
+        },
         isMailVerified: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-            defaultValue: false,
-          },
-          isActiveAccount: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-            defaultValue: true,
-          },
-          createdAt: {
-            type: DataTypes.DATE,
-            allowNull: true,
-          },
-          updatedAt: {
-            type: DataTypes.DATE,
-            allowNull: true,
-          },
+          type: DataTypes.BOOLEAN,
+          allowNull: true,
+          defaultValue: false,
+        },
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: true,
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: true,
+        },
     },
     {
       tableName: "coach",
