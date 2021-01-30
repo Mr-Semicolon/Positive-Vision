@@ -1,6 +1,6 @@
 const { ServerError } = require('../util/serverError');
-const db = require('../../models');
-const { logger } = require('../../config/logger');
+const db = require('../models');
+const { logger } = require('../config/logger');
 
 class BaseController {
   /**

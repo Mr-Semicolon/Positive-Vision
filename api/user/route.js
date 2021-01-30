@@ -1,6 +1,6 @@
 const router = require("express-promise-router")();
-const validator = require("../../middlewares/validator")
 const UserController = require("./Controller");
+const { validator } = require("../../middelwares/validator");
 
 const {
   createUserSchema,

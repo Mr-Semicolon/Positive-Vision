@@ -5,15 +5,15 @@ const session = require("express-session");
 const lusca = require("lusca");
 const upload = multer();
 const { SERVER_ROOT_URL } = require("./serverConfig");
-const { notFoundHandler } = require("../middlewares/notFoundHandler");
-const { healthcheck } = require("../middlewares/healthcheck");
-const { trimer } = require("../middlewares/trimer");
+const { notFoundHandler } = require("../middelwares/notFoundHandler");
+const { healthcheck } = require("../middelwares/healthcheck");
+const { trimer } = require("../middelwares/trimer");
 const { appRouter } = require("../api/router");
-const errorHandler = require("../middlewares/errorHandler");
-const logHandler = require("../middlewares/logHandler");
-const corsMiddleware = require("../middlewares/cors");
+const errorHandler = require("../middelwares/errorHandler");
+const logHandler = require("../middelwares/logHandler");
+const corsMiddleware = require("../middelwares/cors");
 
-const helmetMiddleware = require("../middlewares/helmet");
+const helmetMiddleware = require("../middelwares/helmet");
 // const { valiateMobile } = require('../middelwares/validateMobileNumber');
 /* const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

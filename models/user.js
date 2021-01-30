@@ -1,9 +1,8 @@
 const { DEFAULT_USER_IMAGE_URL } = require("../config/serverConfig");
 
 module.exports = function (sequelize, DataTypes) {
-  const user = sequelize.define(
-    "User",
-    {
+  const user = sequelize.define('User', {
+    
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -70,7 +69,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       tableName: "user",
-    }
+    },
   );
   return user;
 };
