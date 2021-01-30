@@ -8,14 +8,7 @@ exports.createUserSchema = {
   password: Joi.string().min(8).max(255).required(),
   password_confirmation: Joi.any()
     .valid(Joi.ref("password"))
-    .required()
-    .options({
-      language: {
-        any: {
-          allowOnly: "must match password",
-        },
-      },
-    }),
+    .required(),
   BOD: Joi.date()
     .max(`01-01-${date.getFullYear() - 15}`)
     .optional(),

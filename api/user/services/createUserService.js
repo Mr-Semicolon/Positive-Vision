@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const {
-  User,
+  User
 } = require("../../../models");
 
 
@@ -15,20 +15,14 @@ async function bcryptPassword(password) {
 //
 async function tokenGenerator({
   id,
-  mobile,
-  username,
+ name,
   email,
-  accountType,
-  isActiveAccount,
 }) {
   const token = await jwt.sign(
     {
       id,
-      mobile,
-      username,
-      email,
-      accountType,
-      isActiveAccount,
+ name,
+  email,
     },
     process.env.APP_SECRET,
     { expiresIn: "30d" }
@@ -36,7 +30,7 @@ async function tokenGenerator({
   return token;
 }
 // check if the user with mobile number or email or usernmae if exit retrun error
-async function createRootUserService(
+async function createUserService(
   name,
   password,
   BOD,
@@ -104,11 +98,9 @@ async function verifyEmailService(email) {
     id: theUser.id,
     name: theUser.name,
     email: theUser.email,
-    accountType: theUser.accountType,
-    isActiveAccount: theUser.isActiveAccount,
   });
   return {
-    message: "The phone number has been verified successfully",
+    message: "The email has been verified successfully",
     data: { user: theUser, token:token },
   };
 }
@@ -116,7 +108,7 @@ async function verifyEmailService(email) {
 
 
 module.exports = {
-  createRootUserService,
+  createUserService,
   verifyEmailService,
   bcryptPassword,
 };
