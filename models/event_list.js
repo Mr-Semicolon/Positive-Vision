@@ -28,7 +28,15 @@ module.exports = function (sequelize, DataTypes) {
           allowNull:true,
          },
       
-            
+            listId:{
+              type:DataTypes.INTEGER,
+              allowNull:false,
+              references: {
+                model: 'to_do_list',
+                key: 'id',
+              }
+
+            },
           
            
       },
@@ -36,6 +44,15 @@ module.exports = function (sequelize, DataTypes) {
         tableName: "event_list",
       },
     );
+
+
+    event_list.associate = (models) => {
+      coach.belongsTo(models.To_do_list, {
+        foreignKey: 'listId',
+  
+      });
+    };
+
     return event_list;
   };
   

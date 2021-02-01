@@ -18,13 +18,31 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: true,
               },
             
+              courseId:{
+                type:DataTypes.INTEGER,
+                allowNull:false,
+                references: {
+                  model: 'course',
+                  key: 'id',}
+
+
+              },
           
            
       },
       {
         tableName: "courseMedia",
       },
+
     );
+
+    courseMedia.associate = (models) => {
+      courseMedia.belongsTo(models.Course, {
+        foreignKey: 'courseId',
+  
+      });
+
+    };
     return courseMedia;
   };
   

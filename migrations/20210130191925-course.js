@@ -24,6 +24,21 @@ module.exports = {
 
    },
 
+
+   coachId:{
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    references: {
+      model: {
+        tableName: 'coach',
+      },
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  },
+
+
   }),
   down: (queryInterface) => queryInterface.dropTable('course'),
 };

@@ -66,10 +66,38 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DATE,
             allowNull: true,
           },
+
+          coachId:{
+            type:DataTypes.INTEGER,
+            allowNull:false,
+            references: {
+              model: 'coach',
+              key: 'id',}
+
+
+          },
     },
     {
       tableName: "user",
     },
   );
+
+  user.associate = (models) => {
+    user.belongsTo(models.Coach, {
+      foreignKey: 'coachId',
+
+    });
+    user.hasMany(models.Appointment, {
+      foreignKey: "userId",
+      as: "R_appointment_user",
+    });
+  
+    user.hasMany(models.To_do_list, {
+      foreignKey: "userId",
+      as: "R_list_user",
+    });
+
+
+};
   return user;
 };

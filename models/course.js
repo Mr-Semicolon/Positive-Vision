@@ -24,11 +24,39 @@ module.exports = function (sequelize, DataTypes) {
             allowNull:true,
         
            },
-          
+
+      coachId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'coach',
+          key: 'id',
+        }
+
+      },
+           
+                
     },
     {
       tableName: "course",
     },
   );
+ 
+
+  course.associate = (models) => {
+    course.belongsTo(models.Coach, {
+      foreignKey: 'coachId',
+
+    });
+
+  };
+
+
+  course.hasMany(models.CourseMedia, {
+    foreignKey: "couorseId",
+    as: "R_media_course",
+  });
+
+
   return course;
 };
