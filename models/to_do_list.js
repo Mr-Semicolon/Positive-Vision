@@ -27,18 +27,18 @@ module.exports = function (sequelize, DataTypes) {
     );
 
     to_do_list.associate = (models) => {
-      coach.belongsTo(models.User, {
+      to_do_list.belongsTo(models.User, {
         foreignKey: 'userId',
   
       });
-    };
+    
 
 
     to_do_list.hasMany(models.Event_list, {
       foreignKey: "listId",
       as: "R_Eventlist_list",
     });
-  
+  };
     return to_do_list;
   };
   

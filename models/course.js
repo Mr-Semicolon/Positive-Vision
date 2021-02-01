@@ -49,14 +49,14 @@ module.exports = function (sequelize, DataTypes) {
 
     });
 
-  };
+
 
 
   course.hasMany(models.CourseMedia, {
-    foreignKey: "couorseId",
+    foreignKey: "courseId",
     as: "R_media_course",
   });
 
-
+  }
   return course;
 };

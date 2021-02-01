@@ -47,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
 
 
     event_list.associate = (models) => {
-      coach.belongsTo(models.To_do_list, {
+      event_list.belongsTo(models.To_do_list, {
         foreignKey: 'listId',
   
       });

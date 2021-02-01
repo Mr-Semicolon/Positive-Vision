@@ -64,7 +64,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   );
  
-
+  coach.associate = (models) => {
   coach.hasMany(models.Course, {
     foreignKey: "coachId",
     as: "R_coach_course",
@@ -79,6 +79,6 @@ module.exports = function (sequelize, DataTypes) {
     foreignKey: "coachId",
     as: "R_coach_user",
   });
-
+  }
   return coach;
 };
