@@ -5,7 +5,7 @@ const {
 const { BaseController } = require("../");
 
 class CoachController extends BaseController {
-    async createCoachService(req,res,next)
+    async createCoachController(req,res,next)
     {
         const{
             name,
