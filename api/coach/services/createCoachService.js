@@ -77,8 +77,32 @@ async function verifyEmailService(email) {
     };
     */
   }
+
+  async function loginCoachService(email,password){
+    const checkEmail =await Coach.findOne({where:{email:email}}) 
+    if(!checkEmail){
+      return {
+        message: "The Mail not exist",
+        status: 404,
+      };
+    }
+   const checkPass = await bcrypt.compare(password,checkEmail.password);
+   if(!checkPass){
+    return {
+      message: "wrong password",
+      status: 400,
+    };
+   }
+
+   
+    return {
+      message: `The user has been successfully logged in`,
+      data: checkEmail,
+    };
+  }
   module.exports = {
     createCoachService,
     verifyEmailService,
     bcryptPassword,
+    loginCoachService
   };

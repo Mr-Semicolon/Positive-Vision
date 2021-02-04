@@ -1,5 +1,6 @@
 const {
     createCoachService,
+    loginCoachService
 } = require("./services/createCoachService");
 
 const { BaseController } = require("../");
@@ -40,5 +41,31 @@ class CoachController extends BaseController {
           );
           return res.json(response);
         }
+
+        async loginCoachController(req,res,next){
+            const{
+                email, password
+            }=req.body;
+
+            const result = await loginCoachService(
+                email,password
+            );
+            if (result.status) {
+                const response = this.setStatusCode(result.status).sendErrorResponse(
+                  result.message
+                );
+                return next(response);
+            }
+            const response = this.setStatusCode(200).sendResponse(
+                result.message,
+                result.data
+              );
+              return res.json(response);
+            
+
+            
+        }
+
     } 
+
     module.exports = new CoachController();
