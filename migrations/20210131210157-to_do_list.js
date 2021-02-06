@@ -11,6 +11,20 @@ module.exports = {
     },
   
 
+
+    userId:{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'user',
+        },
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+
   }),
   down: (queryInterface) => queryInterface.dropTable('to_do_list'),
 };
