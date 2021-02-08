@@ -25,7 +25,7 @@ const {
    }
 
    async function deleteCourseService(courseId){
-       const checkId=await Course.findOne({where:{id:courseId}})
+       let checkId=await Course.findOne({where:{id:courseId}})
        if(!checkId){
            return{
                message:"The Course not exist",
@@ -40,14 +40,14 @@ const {
 
    async function editCourseService(courseId,reqBody)
    {
-    const checkId=await Course.findOne({where:{id :courseId}})
+    let checkId=await Course.findOne({where:{id:courseId}});
     if(!checkId){
         return{
             message:"The Course not exist",
             status: 404,
         };
     }
-    await checkId.update(reqBody);
+    checkId.update(reqBody);
     return{
         message: "The Course has been updated successfully",
         data: checkId,
