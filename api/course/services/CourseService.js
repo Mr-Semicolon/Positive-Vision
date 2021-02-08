@@ -24,27 +24,34 @@ const {
       };
    }
 
-   async function deleteCourseService(name){
-       const checkName=await Course.findOne({where:{name :name}})
-       if(!checkName){
+   async function deleteCourseService(courseId){
+       const checkId=await Course.findOne({where:{id:courseId}})
+       if(!checkId){
            return{
                message:"The Course not exist",
                status: 404,
            };
        }
-       await checkName.destroy();
+       await checkId.destroy();
+       return{
+        message: "The Course has been deleted successfully",
+    };
    }
 
-   async function editCourseService(name,reqBody)
+   async function editCourseService(courseId,reqBody)
    {
-    const checkName=await Course.findOne({where:{name :name}})
-    if(!checkName){
+    const checkId=await Course.findOne({where:{id :courseId}})
+    if(!checkId){
         return{
             message:"The Course not exist",
             status: 404,
         };
     }
-    await checkName.update(reqBody);
+    await checkId.update(reqBody);
+    return{
+        message: "The Course has been updated successfully",
+        data: checkId,
+    };
 
    }
   module.exports = {

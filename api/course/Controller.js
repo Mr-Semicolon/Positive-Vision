@@ -38,9 +38,9 @@ class CourseController extends BaseController {
     async deleteCourseController(req,res,next)
     {
         const{
-            name,
-        }=req.body;
-        const result=await deleteCourseService(name);
+            courseId,
+        }=req.query;
+        const result=await deleteCourseService(courseId);
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(
             result.message
@@ -56,8 +56,8 @@ class CourseController extends BaseController {
 
     async editCourseController(req,res,next)
     {
-        const name=req.query;
-        const result=await editCourseService(name,req.body);
+        const courseId =req.query;
+        const result=await editCourseService(courseId,req.body);
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(
             result.message
