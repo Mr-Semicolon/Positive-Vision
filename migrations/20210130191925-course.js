@@ -23,8 +23,6 @@ module.exports = {
     allowNull:true,
 
    },
-
-
    coachId:{
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -37,6 +35,15 @@ module.exports = {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   },
+  createdAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
+
 
 
   }),

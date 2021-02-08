@@ -1,4 +1,5 @@
 const Joi = require("joi");
+//const { join } = require("lodash");
 
 exports.createCoachSchema = {
     name: Joi.string().min(6).max(255).trim().required(),
@@ -17,4 +18,5 @@ exports.createCoachSchema = {
     email: Joi.string().email().max(255).required(),
     password: Joi.string().min(8).max(255).required()
     
-  }
+  };
+  

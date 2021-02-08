@@ -34,8 +34,16 @@ module.exports = function (sequelize, DataTypes) {
         }
 
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+          
            
-                
     },
     {
       tableName: "course",
