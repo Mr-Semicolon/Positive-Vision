@@ -79,6 +79,11 @@ module.exports = function (sequelize, DataTypes) {
     foreignKey: "coachId",
     as: "user",
   });
+
+  coach.hasMany(models.BlogPost, {
+    foreignKey: "coachId",
+    as: "blogPost",
+  });
   }
   return coach;
 };
