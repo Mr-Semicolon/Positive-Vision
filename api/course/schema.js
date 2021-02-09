@@ -18,3 +18,7 @@ exports.editCourseSchema= {
   description: Joi.string().min(20).max(1000).trim().optional(),
   hours: Joi.number().optional(),
 };
+
+exports.getCourseSchema= {
+  courseId:Joi.number().required(),
+};
