@@ -1,53 +1,42 @@
-//const { DEFAULT_USER_IMAGE_URL } = require("../config/serverConfig");
-
 module.exports = function (sequelize, DataTypes) {
   const course = sequelize.define('Course', {
-    
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
+      id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true,
+        },
+        coachId:{
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'coach',
+            key: 'id',
           },
-          name: {
-            type: DataTypes.STRING,
-            allowNull: true,
-          },
-          
-         description: {
-            type: DataTypes.STRING,
-            allowNull:true,
-        
-           },
-        hours:{
-            type:DataTypes.INTEGER,
-            allowNull:true,
-        
-           },
-
-      coachId:{
+        },
+        name: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+      hours: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'coach',
-          key: 'id',
-        }
-
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: true,
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: true,
+        },
+      },{
+        tableName: 'course',
       },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-          
-           
-    },
-    {
-      tableName: "course",
-    },
   );
  
 
@@ -62,7 +51,7 @@ module.exports = function (sequelize, DataTypes) {
 
   course.hasMany(models.CourseMedia, {
     foreignKey: "courseId",
-    as: "R_media_course",
+    as: "media",
   });
 
   }

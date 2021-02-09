@@ -56,19 +56,19 @@ class CourseController extends BaseController {
 
     async editCourseController(req,res,next)
     {
-        const courseId =req.query;
+        const { courseId } = req.query;
         const result=await editCourseService(courseId,req.body);
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(
-            result.message
-        );
+              result.message
+            );
             return next(response);
-        }
-        const response = this.setStatusCode(200).sendResponse(
+          }
+          const response = this.setStatusCode(200).sendResponse(
             result.message,
             result.data
-        );
-        return res.json(response);
+          );
+          return res.json(response);
     }
 
  

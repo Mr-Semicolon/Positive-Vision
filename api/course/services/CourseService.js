@@ -40,17 +40,21 @@ const {
 
    async function editCourseService(courseId,reqBody)
    {
-    let checkId=await Course.findOne({where:{id:courseId}});
-    if(!checkId){
-        return{
-            message:"The Course not exist",
-            status: 404,
-        };
+    let resultData = {};
+    const returnedResult = await Course.findOne({
+      where: {
+        id: courseId,
+      },
+    });
+    if (!returnedResult) {
+      return { message: "this course not found", status: 400 };
     }
-    checkId.update(reqBody);
-    return{
-        message: "The Course has been updated successfully",
-        data: checkId,
+    returnedResult.update(reqBody);
+    resultData["UpdatedCourse"] = returnedResult;
+  
+    return {
+      message: `course update has been stablished successfully`,
+      data: resultData,
     };
 
    }
