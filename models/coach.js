@@ -67,17 +67,17 @@ module.exports = function (sequelize, DataTypes) {
   coach.associate = (models) => {
   coach.hasMany(models.Course, {
     foreignKey: "coachId",
-    as: "R_coach_course",
+    as: "course",
   });
 
   coach.hasMany(models.Appointment, {
     foreignKey: "coachId",
-    as: "R_coach_app",
+    as: "appointment",
   });
 
   coach.hasMany(models.User, {
     foreignKey: "coachId",
-    as: "R_coach_user",
+    as: "user",
   });
   }
   return coach;

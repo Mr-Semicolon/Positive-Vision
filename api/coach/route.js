@@ -5,7 +5,8 @@ const { validator } = require("../../middelwares/validator");
 
 const {
     createCoachSchema,
-    loginCoachSchema
+    loginCoachSchema,
+
    
 } = require("./schema");
 
@@ -16,7 +17,7 @@ const coachRoute = {
   root: "/",
   createCoach: "/sign-up",
   loginCoach: "/login"
-  
+ 
 };
 
 

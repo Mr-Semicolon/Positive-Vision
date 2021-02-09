@@ -1,6 +1,4 @@
 
-//const { DEFAULT_USER_IMAGE_URL } = require('../config/serverConfig');
-
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('course', {
     id: {
@@ -9,36 +7,38 @@ module.exports = {
       primaryKey: true,
       autoIncrement: true,
     },
+    coachId:{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'coach',
+        },
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     name: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    hours: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    createdAt: {
+      type: Sequelize.DATE,
       allowNull: true,
     },
-   description: {
-    type: Sequelize.STRING,
-    allowNull:true,
-
-   },
-   hours:{
-    type:Sequelize.INTEGER,
-    allowNull:true,
-
-   },
-
-
-   coachId:{
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: {
-        tableName: 'coach',
-      },
-      key: 'id',
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  },
-
-
   }),
   down: (queryInterface) => queryInterface.dropTable('course'),
 };
