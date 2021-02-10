@@ -37,6 +37,14 @@ module.exports = {
       allowNull: true,
      
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
     
   }),
   down: (queryInterface) => queryInterface.dropTable('blogPost'),

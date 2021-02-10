@@ -6,6 +6,7 @@ const {
   createBlogPostSchema,
   deleteBlogPostSchema,
   editBlogPostSchema,
+  getBlogPostSchema,
  
 } = require("./schema");
 
@@ -15,6 +16,7 @@ const blogpostRoute = {
   createBlogPost: "/add-blogpost",
   deleteBlogPost: "/delete-blogpost",
   editBlogPost:"/edit-blogpost",
+  getBlogPost:"/get-blogpost",
   
 };
 
@@ -31,9 +33,14 @@ router.delete(
 );
 
 router.put(
-    blogpostRoute.editBlogPost,
+  blogpostRoute.editBlogPost,
   validator(editBlogPostSchema),
   BlogPostController.editBlogPostController.bind(BlogPostController)
+);
+router.get(
+  blogpostRoute.getBlogPost,
+  validator(getBlogPostSchema),
+  BlogPostController.getBlogPostController.bind(BlogPostController)
 );
 
 module.exports = {

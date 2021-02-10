@@ -4,19 +4,20 @@ const {
 
 
     async function createBlogPostService(
-      
+      coachId,
       image,
       title,
       content,
-      coachId,
+      
       
       )
     {
       let theBlogPost=await BlogPost.create({
+        coachId,
         image,
         title,
         content,
-        coachId,
+       
       });
 
       return{
@@ -59,8 +60,28 @@ const {
     };
 
    }
+
+   async function getBlogPostService(blogpostId)
+   {
+    let resultData = {};
+    const returnedResult = await BlogPost.findOne({
+      where: {
+        id: blogpostId,
+      },
+    });
+    if (!returnedResult) {
+        return { message: "this blogPost not found", status: 400 };
+      }
+      
+      resultData["gettingBlogPost"] = returnedResult;
+    return{
+        //message:"The Course has been updated successfully",
+        data: resultData,
+    };
+   }
   module.exports = {
       createBlogPostService,
       deleteBlogPostService,
       editBlogPostService,
+      getBlogPostService,
   };
