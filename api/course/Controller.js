@@ -1,6 +1,6 @@
 const {
 
-  createCourseService, deleteCourseService,editCourseService,
+  createCourseService, deleteCourseService,editCourseService,getCourseService,
 } = require("./services/CourseService");
 
 
@@ -58,6 +58,23 @@ class CourseController extends BaseController {
     {
         const { courseId } = req.query;
         const result=await editCourseService(courseId,req.body);
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+              result.message
+            );
+            return next(response);
+          }
+          const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+          );
+          return res.json(response);
+    }
+
+    async getCourseController(req,res,next)
+    {
+        const { courseId } = req.query;
+        const result=await getCourseService(courseId);
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(
               result.message

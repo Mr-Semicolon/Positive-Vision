@@ -58,8 +58,29 @@ const {
     };
 
    }
+
+   async function getCourseService(courseId)
+   {
+    let resultData = {};
+    const returnedResult = await Course.findOne({
+      where: {
+        id: courseId,
+      },
+    });
+    if (!returnedResult) {
+        return { message: "this course not found", status: 400 };
+      }
+      
+      resultData["gettingCourse"] = returnedResult;
+    return{
+        //message:"The Course has been updated successfully",
+        data: resultData,
+    };
+   }
+
   module.exports = {
       createCourseService,
       deleteCourseService,
       editCourseService,
+      getCourseService,
   };

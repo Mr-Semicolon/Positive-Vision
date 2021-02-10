@@ -46,9 +46,6 @@ module.exports = function (sequelize, DataTypes) {
 
     });
 
-
-
-
   course.hasMany(models.CourseMedia, {
     foreignKey: "courseId",
     as: "media",
