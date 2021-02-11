@@ -7,6 +7,7 @@ const {
   deleteCourseSchema,
   editCourseSchema,
   getCourseSchema,
+  
  
 } = require("./schema");
 
@@ -17,6 +18,7 @@ const courseRoute = {
   deleteCourse: "/delete-course",
   editCourse:"/edit-course",
   getCourse:"/get-course",
+  displayCourse:"/display-course"
   
 };
 
@@ -43,6 +45,11 @@ router.get(
   validator(getCourseSchema),
   CourseController.getCourseController.bind(CourseController)
 );
+router.get(
+  courseRoute.displayCourse,
+  CourseController.displayCourseController.bind(CourseController)
+
+)
 
 module.exports = {
   courseRouter: router,

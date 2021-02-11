@@ -1,6 +1,6 @@
 const {
 
-    createBlogPostService, deleteBlogPostService,editBlogPostService, getBlogPostService,
+    createBlogPostService, deleteBlogPostService,editBlogPostService, getBlogPostService,displayBlogPostService
   } = require("./services/createBlogPostServices");
   
   
@@ -88,6 +88,23 @@ const {
           );
           return res.json(response);
     }
+    async DisplayBlogPostController(req,res,next)
+    {
+        const { blogpostId } = req.query;
+        const result=await displayBlogPostService(blogpostId);
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+              result.message
+            );
+            return next(response);
+          }
+          const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+          );
+          return res.json(response);
+    }
+    
    
   }
   

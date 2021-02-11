@@ -17,6 +17,7 @@ const blogpostRoute = {
   deleteBlogPost: "/delete-blogpost",
   editBlogPost:"/edit-blogpost",
   getBlogPost:"/get-blogpost",
+  displayBlogpost:"/display-blogpost"
   
 };
 
@@ -41,6 +42,10 @@ router.get(
   blogpostRoute.getBlogPost,
   validator(getBlogPostSchema),
   BlogPostController.getBlogPostController.bind(BlogPostController)
+);
+router.get(
+  blogpostRoute.displayBlogpost,
+  BlogPostController.DisplayBlogPostController.bind(BlogPostController)
 );
 
 module.exports = {

@@ -77,10 +77,33 @@ const {
         data: resultData,
     };
    }
+   
+   async function displayCourseService ()
+   {
+    let resultData = {};
+    const returnedResult = await Course.findAll({
+      attributes:{exclude:['id','coachId','createdAt','updatedAt']},
+      order: [
+        ['createdAt','DESC']
+      ]
+       
+     
+    });
+    if (!returnedResult) {
+        return { message: "this course not found", status: 400 };
+      }
+      
+      resultData["Course Data"] = returnedResult;
+    return{
+        
+        data: resultData,
+    };
+   }
 
   module.exports = {
       createCourseService,
       deleteCourseService,
       editCourseService,
       getCourseService,
+      displayCourseService
   };

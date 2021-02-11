@@ -79,9 +79,32 @@ const {
         data: resultData,
     };
    }
+   async function displayBlogPostService ()
+   {
+    let resultData = {};
+    const returnedResult = await BlogPost.findAll({
+      attributes:{exclude:['id','coachId','createdAt','updatedAt']},
+      order: [
+        ['createdAt','DESC']
+      ]
+       
+     
+    });
+    if (!returnedResult) {
+        return { message: "this course not found", status: 400 };
+      }
+      
+      resultData["Blogpost Data"] = returnedResult;
+    return{
+        
+        data: resultData,
+    };
+   }
+
   module.exports = {
       createBlogPostService,
       deleteBlogPostService,
       editBlogPostService,
       getBlogPostService,
+      displayBlogPostService
   };
