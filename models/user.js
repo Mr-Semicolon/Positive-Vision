@@ -58,6 +58,15 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             defaultValue: true,
           },
+          uniqueString:{
+            type: DataTypes.STRING,
+            allowNull: true,
+          },
+          accountType:{
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: 'user',
+          },
           createdAt: {
             type: DataTypes.DATE,
             allowNull: true,
@@ -70,9 +79,11 @@ module.exports = function (sequelize, DataTypes) {
           coachId:{
             type:DataTypes.INTEGER,
             allowNull:false,
+            defaultValue: 'No Coach Assigned yet',
             references: {
               model: 'coach',
               key: 'id',}
+              
 
 
           },

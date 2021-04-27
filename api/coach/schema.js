@@ -19,4 +19,10 @@ exports.createCoachSchema = {
     password: Joi.string().min(8).max(255).required()
     
   };
+
+  exports.confirmCoachEmailSchema ={
+    email: Joi.string().email().max(255).required(),
+    theString: Joi.string().max(255).required()
+    
+  };
   

@@ -18,3 +18,11 @@ exports.createUserSchema = {
   image: Joi.string().max(3000).required(),
   facebookOrTwitter: Joi.string().valid("Facebook", "Twitter").required(),
 };
+exports.loginUserSchema = {
+  email: Joi.string().email().max(255).required(),
+  password: Joi.string().min(8).max(255).required(),
+};
+exports.confirmEmailSchema = {
+  email: Joi.string().email().max(255).required(),
+  theString: Joi.string().max(255).required(),
+};

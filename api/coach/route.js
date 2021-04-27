@@ -6,7 +6,7 @@ const { validator } = require("../../middelwares/validator");
 const {
     createCoachSchema,
     loginCoachSchema,
-
+    confirmCoachEmailSchema
    
 } = require("./schema");
 
@@ -16,7 +16,8 @@ const coachRoute = {
   BaseRoute: "/coaches",
   root: "/",
   createCoach: "/sign-up",
-  loginCoach: "/login"
+  loginCoach: "/login",
+  confirmCoachEmail:"/coach-email-confirm",
  
 };
 
@@ -29,11 +30,17 @@ router.post(
 );
 
 router.post(
+  coachRoute.confirmCoachEmail,
+  validator(confirmCoachEmailSchema),
+  CoachController.confirmCoachEmailController.bind(CoachController)
+);
+
+router.post(
 coachRoute.loginCoach,
 validator(loginCoachSchema),
 CoachController.loginCoachController.bind(CoachController)
 
-)
+);
 
 module.exports = {
     coachRouter: router,

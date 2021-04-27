@@ -11,17 +11,13 @@ function isAuthorized(req, res, next) {
       return next({ message: err.message, status: 403 });
     }
     const {
-      id, username, mobile, accountType, isActiveAccount, email, iat, exp,
+      id, name, email, accountType, isActiveAccount, iat, exp,
     } = decoded;
-    if (!mobile) {
-      return next({ message: 'invalid token', status: 403 });
-    }
     res.header('x-auth-token-creation', iat);
     res.header('x-auth-token-expiry', exp);
-    res.locals.rootUserId = String(id);
-res.locals.email = email;
-    res.locals.username = username;
-    res.locals.mobile = mobile;
+    res.locals.id = String(id);
+    res.locals.email = email;
+    res.locals.name = name;
     res.locals.accountType = accountType;
     res.locals.isActiveAccount = isActiveAccount;
     return next();

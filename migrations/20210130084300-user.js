@@ -58,6 +58,15 @@ module.exports = {
       allowNull: true,
       defaultValue: true,
     },
+    uniqueString:{
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    accountType:{
+      type: Sequelize.STRING,
+      allowNull: true,
+      defaultValue: 'user',
+    },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: true,
@@ -65,6 +74,19 @@ module.exports = {
     updatedAt: {
       type: Sequelize.DATE,
       allowNull: true,
+    },
+    coachId:{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      defaultValue: 'No Coach Assigned yet',
+      references: {
+        model: {
+          tableName: 'coach',
+        },
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     },
   }),
   down: (queryInterface) => queryInterface.dropTable('user'),

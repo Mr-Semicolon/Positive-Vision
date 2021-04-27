@@ -48,6 +48,15 @@ module.exports = {
       allowNull: true,
       defaultValue: false,
     },
+    uniqueString:{
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    accountType:{
+      type: Sequelize.STRING,
+      allowNull: true,
+      defaultValue: 'coach',
+    },
     createdAt: {
       type: Sequelize.DATE,
       allowNull: true,

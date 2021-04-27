@@ -50,6 +50,15 @@ module.exports = function (sequelize, DataTypes) {
           allowNull: true,
           defaultValue: false,
         },
+        uniqueString:{
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
+        accountType:{
+          type: DataTypes.STRING,
+          allowNull: true,
+          defaultValue: 'coach',
+        },
         createdAt: {
           type: DataTypes.DATE,
           allowNull: true,

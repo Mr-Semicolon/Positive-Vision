@@ -1,6 +1,7 @@
 const {
     createCoachService,
-    loginCoachService
+    loginCoachService,
+    confirmCoachEmailService
 } = require("./services/createCoachService");
 
 
@@ -64,6 +65,28 @@ class CoachController extends BaseController {
         return res.json(response);
             
     }
+
+    async confirmCoachEmailController(req,res,next){
+        const{
+           email, theString
+       }=req.body;
+
+       const result = await confirmCoachEmailService(
+           email,theString
+       );
+       if (result.status) {
+           const response = this.setStatusCode(result.status).sendErrorResponse(
+           result.message
+       );
+           return next(response);
+       }
+       const response = this.setStatusCode(200).sendResponse(
+           result.message,
+           result.data
+       );
+       return res.json(response);
+           
+   }
 
     
 
