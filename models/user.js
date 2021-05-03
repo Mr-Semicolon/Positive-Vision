@@ -63,9 +63,9 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
           },
           accountType:{
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM('User', 'Coach'),
             allowNull: true,
-            defaultValue: 'user',
+            defaultValue: 'User',
           },
           coachId:{
             type:DataTypes.INTEGER,

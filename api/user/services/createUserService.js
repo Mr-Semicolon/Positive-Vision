@@ -6,6 +6,7 @@ const {
 } = require("../../../models");
 
 async function sendMail(email,theString){
+
   var Transport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
