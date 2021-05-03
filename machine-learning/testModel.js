@@ -1,21 +1,23 @@
 const spawn = require('await-spawn');
-const text = "I think the saddest people always try their hardest to make people happy. Because they know what it’s like to feel absolutely worthless and they don’t want anybody else to feel like that"
+const text = "“I used to think the worst thing in life was to end up all alone, it’s not. The worst thing in life is to end up with people that make you feel all alone. Sometimes, you need to be alone. Not to be lonely, but to enjoy your free time being yourself. Standing alone is better than standing with people who don’t value you. You smile, but you wanna cry. You talk, but you wanna be quiet. You pretend like you’re happy, but you aren’t Standing alone doesn’t mean I am alone. It means I’m strong enough to handle things all by myself You may feel lost and alone. But God knows where you are and has a good plan for your future"
 let savee ='';
-async function tagroba(theText) {
+async function pythonExcute(theText) {
  
-  
+  try {
   const process = await spawn('python',["predict.py",theText]);
  
 
   savee+= process.toString();
-
   return savee;
-
+}catch(e){
+  console.log(e.stderr.toString())
+ 
 }
- const bateekh =tagroba(text);
+}
+ const personality =pythonExcute(text);
 
 
- bateekh.then(function(result) {
+ personality.then(function(result) {
   console.log(result) 
 })
 
