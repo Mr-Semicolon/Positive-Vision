@@ -1,5 +1,5 @@
 const spawn = require('await-spawn');
-const text = "“I used to think the worst thing in life was to end up all alone, it’s not. The worst thing in life is to end up with people that make you feel all alone. Sometimes, you need to be alone. Not to be lonely, but to enjoy your free time being yourself. Standing alone is better than standing with people who don’t value you. You smile, but you wanna cry. You talk, but you wanna be quiet. You pretend like you’re happy, but you aren’t Standing alone doesn’t mean I am alone. It means I’m strong enough to handle things all by myself You may feel lost and alone. But God knows where you are and has a good plan for your future"
+//const text = "“I used to think the worst thing in life was to end up all alone, it’s not. The worst thing in life is to end up with people that make you feel all alone. Sometimes, you need to be alone. Not to be lonely, but to enjoy your free time being yourself. Standing alone is better than standing with people who don’t value you. You smile, but you wanna cry. You talk, but you wanna be quiet. You pretend like you’re happy, but you aren’t Standing alone doesn’t mean I am alone. It means I’m strong enough to handle things all by myself You may feel lost and alone. But God knows where you are and has a good plan for your future"
 let savee ='';
 async function pythonExcute(theText) {
  
@@ -21,6 +21,9 @@ async function pythonExcute(theText) {
   console.log(result) 
 })
 
+module.exports = {
+  pythonExcute,
+};
 
  //console.log(process.toString())
  /* savee = process+"";

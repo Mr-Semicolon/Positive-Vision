@@ -1,9 +1,14 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const rp = require('request-promise');
+const $ = require('cheerio');
+const {pythonExcute} =require('../../../machine-learning/testModel')
 const {
-  User
+  User,
+  UserPersonality,
 } = require("../../../models");
+
 
 async function sendMail(email,theString){
 
@@ -97,6 +102,25 @@ async function createUserService(
 
   const uniqueString =await randString();
 
+ if(socialMedia){
+  let checkk ='';
+  rp(socialMedia)
+  .then(function(html){
+   checkk = $('p',html).text();
+   const person =pythonExcute(checkk);
+   person.then(function(result) {
+    await UserPersonality.create({
+      personality:result,
+      email:email,
+    }) 
+  })
+  })
+  .catch(function(err){
+    console.log(err.toString())
+  });
+
+
+ }
 
   let theUser = await User.create({
     name,
