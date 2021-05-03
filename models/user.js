@@ -67,6 +67,16 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             defaultValue: 'user',
           },
+          coachId:{
+            type:DataTypes.INTEGER,
+            allowNull:false,
+            references: {
+              model: 'coach',
+              key: 'id',}
+              
+
+
+          },
           createdAt: {
             type: DataTypes.DATE,
             allowNull: true,
@@ -76,17 +86,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
           },
 
-          coachId:{
-            type:DataTypes.INTEGER,
-            allowNull:false,
-            defaultValue: 'No Coach Assigned yet',
-            references: {
-              model: 'coach',
-              key: 'id',}
-              
-
-
-          },
+         
     },
     {
       tableName: "user",

@@ -63,22 +63,13 @@ module.exports = {
       allowNull: true,
     },
     accountType:{
-      type: Sequelize.STRING,
+      type: Sequelize.ENUM('User', 'Coach'),
       allowNull: true,
-      defaultValue: 'user',
-    },
-    createdAt: {
-      type: Sequelize.DATE,
-      allowNull: true,
-    },
-    updatedAt: {
-      type: Sequelize.DATE,
-      allowNull: true,
+      defaultValue: 'User',
     },
     coachId:{
       type: Sequelize.INTEGER,
       allowNull: false,
-      defaultValue: 'No Coach Assigned yet',
       references: {
         model: {
           tableName: 'coach',
@@ -88,6 +79,15 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: true,
+    },
+    
   }),
   down: (queryInterface) => queryInterface.dropTable('user'),
 };

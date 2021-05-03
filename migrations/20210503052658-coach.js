@@ -53,9 +53,9 @@ module.exports = {
       allowNull: true,
     },
     accountType:{
-      type: Sequelize.STRING,
+      type: Sequelize.ENUM('User', 'Coach'),
       allowNull: true,
-      defaultValue: 'coach',
+      defaultValue: 'Coach',
     },
     createdAt: {
       type: Sequelize.DATE,
