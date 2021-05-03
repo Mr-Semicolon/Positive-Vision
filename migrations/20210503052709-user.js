@@ -69,7 +69,7 @@ module.exports = {
     },
     coachId:{
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: {
           tableName: 'coach',

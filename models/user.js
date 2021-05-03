@@ -69,7 +69,7 @@ module.exports = function (sequelize, DataTypes) {
           },
           coachId:{
             type:DataTypes.INTEGER,
-            allowNull:false,
+            allowNull:true,
             references: {
               model: 'coach',
               key: 'id',}
