@@ -17,6 +17,7 @@ exports.createUserSchema = {
   socialMedia: Joi.string().max(255).required(),
   image: Joi.string().max(3000).required(),
   facebookOrTwitter: Joi.string().valid("Facebook", "Twitter").required(),
+  accountType: Joi.string().valid("User", "Coach").required(),
 };
 exports.loginUserSchema = {
   email: Joi.string().email().max(255).required(),
