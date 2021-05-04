@@ -4,7 +4,7 @@ let savee ='';
 async function pythonExcute(theText) {
  
   try {
-  const process = await spawn('python',["predict.py",theText]);
+  const process = await spawn('python',["./machine-learning/predict.py",theText]);
  
 
   savee+= process.toString();
@@ -14,12 +14,12 @@ async function pythonExcute(theText) {
  
 }
 }
- const personality =pythonExcute(text);
+ //const personality =pythonExcute(text);
 
 
- personality.then(function(result) {
-  console.log(result) 
-})
+// personality.then(function(result) {
+  //console.log(result) 
+//})
 
 module.exports = {
   pythonExcute,

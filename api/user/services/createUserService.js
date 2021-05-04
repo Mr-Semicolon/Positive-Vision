@@ -1,13 +1,20 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+
 const nodemailer = require("nodemailer");
 const rp = require('request-promise');
 const $ = require('cheerio');
-const {pythonExcute} =require('../../../machine-learning/testModel')
+const {pythonExcute} = require('../../../machine-learning/testModel')
 const {
   User,
   UserPersonality,
 } = require("../../../models");
+
+
+
+
+
 
 
 async function sendMail(email,theString){
@@ -101,27 +108,30 @@ async function createUserService(
   }
 
   const uniqueString =await randString();
-
- if(socialMedia){
   let checkk ='';
-  rp(socialMedia)
-  .then(function(html){
-   checkk = $('p',html).text();
-   const person =pythonExcute(checkk);
-   person.then(function(result) {
-    await UserPersonality.create({
-      personality:result,
-      email:email,
-    }) 
-  })
+ if(socialMedia){
+   rp(socialMedia).then(async function(html){
+   checkk = await $('p',html).text();
+   console.log(checkk);
+  
   })
   .catch(function(err){
     console.log(err.toString())
   });
-
-
  }
-
+ const personality = await pythonExcute(checkk.toString());
+ let donee = personality;
+/*personality.then(function(result) {
+   donee=result;
+ 
+});*/
+if(donee){
+let thePersonality = await UserPersonality.create({
+  personality:donee,
+  email:email,
+})  
+console.log(thePersonality);
+}
   let theUser = await User.create({
     name,
   password:hashedPassword,
