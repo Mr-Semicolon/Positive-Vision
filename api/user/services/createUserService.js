@@ -13,7 +13,16 @@ const {
 
 
 
-
+/**
+ *
+ * tokenGenerator function that generat the token
+ * @param {string} id id of root user
+ * @param {string} name
+ * @param {string} email
+ * @param {string} accountType
+ * @param {boolean} isActiveAccount
+ * @returns token to user to use it when use APIs require authenticated
+ */
 
 
 
@@ -59,21 +68,23 @@ async function bcryptPassword(password) {
   return hash;
 }
 //
-async function tokenGenerator({
+async function tokenGenerator( {
   id,
   name,
   email,
   accountType,
-  isActiveAccount,
+  isActiveAccount
 }) {
   const token = await jwt.sign(
+    
     {
       id,
       name,
       email,
       accountType,
-      isActiveAccount,
-    },
+      isActiveAccount
+    }
+    ,
     process.env.APP_SECRET,
     { expiresIn: "30d" }
   );
@@ -203,6 +214,7 @@ if(checkEmail.isMailVerified === false){
     status: 400,
   };
 }
+
  
   const token = await tokenGenerator({
     id: checkEmail.id,
@@ -218,7 +230,7 @@ if(checkEmail.isMailVerified === false){
     email: checkEmail.email,
     accountType: checkEmail.accountType,
     isActiveAccount: checkEmail.isActiveAccount,
-    token,
+    token :token,
   };
   
   return {

@@ -13,11 +13,14 @@ function isAuthorized(req, res, next) {
     const {
       id, name, email, accountType, isActiveAccount, iat, exp,
     } = decoded;
+    if (!email) {
+      return next({ message: 'invalid token', status: 403 });
+    }
     res.header('x-auth-token-creation', iat);
     res.header('x-auth-token-expiry', exp);
     res.locals.id = String(id);
-    res.locals.email = email;
     res.locals.name = name;
+    res.locals.email = email;
     res.locals.accountType = accountType;
     res.locals.isActiveAccount = isActiveAccount;
     return next();
