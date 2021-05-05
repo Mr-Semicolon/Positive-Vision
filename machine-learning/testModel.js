@@ -14,6 +14,19 @@ async function pythonExcute(theText) {
  
 }
 }
+
+////////////////////////moheeeem//////////////////////////
+
+/*async function bateekh() {
+  const personality = await pythonExcute(text);
+ let donee = personality;
+ if(donee){
+   console.log(donee);
+ }
+}
+bateekh();*/
+
+//////////////////////////////////////////////////////////
  //const personality =pythonExcute(text);
 
 

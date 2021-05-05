@@ -1,4 +1,4 @@
-import React,{Fragment} from 'react';
+import React,{Fragment, useEffect,useState} from 'react';
 
 import contact from '../ui/contact.png'
 import synergy from '../ui/synergy.png'
@@ -20,7 +20,28 @@ import logoo from '../ui/logo.png'
 export default function Dashboard(){
 
   
-  //const [name,setname] = useState('');
+  const [name,setname] = useState('');
+
+  useEffect(  ()=>{
+    (
+      async ()=>{
+      const response=  await fetch("http://127.0.0.1:7000/dashboard/get-personality",{
+
+            headers:{ "x-auth-token" : localStorage.getItem("token")},
+            withCredentials : true,
+            
+              
+          
+          });
+          const content =await response.json();
+          console.log(content);
+          setname(content.data.userinfo.name);
+
+      }
+    )();
+
+
+  });
 
 
 
@@ -39,7 +60,7 @@ export default function Dashboard(){
      
              <div className="dashimg">
        <img src={picc}></img>
-       <h1>Welcome,{}</h1>
+       <h1>Welcome,{name}</h1>
        
        
 

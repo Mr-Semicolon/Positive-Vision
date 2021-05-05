@@ -30,6 +30,7 @@ export default function Signin(){
             })
         });
         const content =await response.json();
+        localStorage.setItem("token" , content.data.token)
        
        
         try {

@@ -22,4 +22,4 @@ def predict_personality(text):
     return [EXT[0], NEU[0], AGR[0], CON[0], OPN[0]]
 text = sys.argv[1]
 predictions = predict_personality(text)
-print("predicted personality:", predictions)
+print(predictions)
