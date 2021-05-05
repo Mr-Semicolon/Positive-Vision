@@ -1,10 +1,11 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const axios = require("axios")
 
 
 const nodemailer = require("nodemailer");
 const rp = require('request-promise');
-const $ = require('cheerio');
+const cheerio = require('cheerio');
 const {pythonExcute} = require('../../../machine-learning/testModel')
 const {
   User,
@@ -121,18 +122,17 @@ async function createUserService(
   const uniqueString =await randString();
   let checkk ='';
  if(socialMedia){
-   rp(socialMedia).then(async function(html){
-   checkk = await $('p',html).text();
-   console.log(checkk);
-  
-  })
-  .catch(function(err){
-    console.log(err.toString())
-  });
+  const { data } = await axios.get(socialMedia);
+  const $ = cheerio.load(data);
+  checkk = $('p').text();
+  delete data.dataValues
+
  }
+ console.log(checkk);
  const personality = await pythonExcute(checkk.toString());
  let donee = personality;
-/*personality.then(function(result) {
+delete checkk.dataValues;
+ /*personality.then(function(result) {
    donee=result;
  
 });*/
