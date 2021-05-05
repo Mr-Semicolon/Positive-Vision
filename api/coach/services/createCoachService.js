@@ -5,6 +5,18 @@ const {
   Coach
 } = require("../../../models");
 
+
+/**
+ *
+ * tokenGenerator function that generat the token
+ * @param {string} id id of root user
+ * @param {string} name
+ * @param {string} email
+ * @param {string} accountType
+ * @param {boolean} isActiveAccount
+ * @returns token to user to use it when use APIs require authenticated
+ */
+
 async function sendMail(email,theString){
   var Transport = nodemailer.createTransport({
     service: "Gmail",

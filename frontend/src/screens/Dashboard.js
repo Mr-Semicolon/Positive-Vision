@@ -1,4 +1,5 @@
 import React,{Fragment, useEffect,useState} from 'react';
+import ReactTypingEffect from 'react-typing-effect';
 
 import contact from '../ui/contact.png'
 import synergy from '../ui/synergy.png'
@@ -18,9 +19,12 @@ import logoo from '../ui/logo.png'
 
 // eslint-disable-next-line react/prop-types
 export default function Dashboard(){
+  
 
   
   const [name,setname] = useState('');
+  const[personalitydetection,setpersonalitydetection] = useState('');
+  
 
   useEffect(  ()=>{
     (
@@ -34,8 +38,11 @@ export default function Dashboard(){
           
           });
           const content =await response.json();
-          console.log(content);
+          
           setname(content.data.userinfo.name);
+          setpersonalitydetection(content.data.pesonality.personality);
+
+
 
       }
     )();
@@ -46,10 +53,13 @@ export default function Dashboard(){
 
 
 
+
+
    
 
     
     return(
+
      <Fragment>
    
 
@@ -60,9 +70,15 @@ export default function Dashboard(){
      
              <div className="dashimg">
        <img src={picc}></img>
-       <h1>Welcome,{name}</h1>
-       
-       
+      
+       </div>
+       <div className="welcome">
+      
+       <ReactTypingEffect className="h1"
+        text={"Welcome, " + name}
+        speed= "100"
+        
+      />
 
        </div>
         <div className="row">
@@ -70,7 +86,7 @@ export default function Dashboard(){
           <div className="col-5">
           <div className="dashmenu">    
                <div>
-                 <img  src={logout} alt=""/>
+               <Link to="/signin"><img  src={logout} alt=""/></Link>  
               
                </div>
                <div>
@@ -114,10 +130,30 @@ export default function Dashboard(){
   <div className='rw'>
     <div className='col-lg-6 pt-5 mb-5'>
       <div className='blue-column mb-5'>
-      <div className="leftblue">
+      <div className="leftblue person">
+        <h1 className="pt-5 ">Your personality detection result</h1>
+      
 
         </div>
-        <div className="rightblue">
+        <div className="rightblue person">
+        <h2 className="">
+          { personalitydetection[1] =="1"? <div className="mb-3">1-Sociable person</div>: <div className="mb-3">1-Introvert person</div>
+          }
+          {
+            personalitydetection[3] =="1"? <div className="mb-3">2-Neurotic person</div>: <div className="mb-3">2-tranquil person</div>
+          }
+          {
+            personalitydetection[5] =="1"? <div className="mb-3">3-Friendly person</div>: <div className="mb-3">3-hostile person</div>
+          }
+          {
+            personalitydetection[7] =="1"? <div className="mb-3">4-diligent person</div>: <div className="mb-3">4-Casual person</div>
+          }
+          {
+            personalitydetection[9] =="1"? <div >5-closed</div>: <div>5-Open to experience</div>
+            
+          }
+          {console.log(personalitydetection)}
+          </h2>
 
         </div>
       

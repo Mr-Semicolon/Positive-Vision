@@ -14,13 +14,9 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: {
-                tableName: 'coach',
-              },
+              model: 'coach',
               key: 'id',
             },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE',
           },
           image: {
             type: DataTypes.STRING,

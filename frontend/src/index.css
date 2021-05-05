@@ -134,6 +134,27 @@ li{
 
  
 }
+.person{
+  display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ align-items: center;
+ width: 100px;
+ }
+ .person h2{
+   flex:0 1 50rem;
+  margin: 50px;
+  padding: 20px;
+  color: #5FC6C5;
+   
+ }
+ .person h1
+ {
+   flex:0 1 50rem;
+  
+   padding: 20px;
+   color: white;
+ }
 span{
   display: flex;
   flex-wrap: wrap;
@@ -491,4 +512,14 @@ transition: 0.5s;
   }
   .jumbotron p{
     color:black;
+  }
+  .welcome .h1{
+    width: 40%;
+    position: absolute;
+   top: 250px;
+    left: 30%;
+    font-size: 50px;
+    color: #2ea5a3;
+  
+  
   }
