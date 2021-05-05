@@ -4,7 +4,6 @@ const axios = require("axios")
 
 
 const nodemailer = require("nodemailer");
-const rp = require('request-promise');
 const cheerio = require('cheerio');
 const {pythonExcute} = require('../../../machine-learning/testModel')
 const {
