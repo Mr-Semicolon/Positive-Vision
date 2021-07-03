@@ -28,15 +28,15 @@ module.exports = function (sequelize, DataTypes) {
           allowNull:true,
          },
       
-            listId:{
-              type:DataTypes.INTEGER,
-              allowNull:false,
-              references: {
-                model: 'to_do_list',
-                key: 'id',
-              }
+         userId:{
+          type:DataTypes.INTEGER,
+          allowNull:false,
+          references: {
+            model: 'user',
+            key: 'id',
+          }
 
-            },
+        },
           
            
       },
@@ -47,11 +47,11 @@ module.exports = function (sequelize, DataTypes) {
 
 
     event_list.associate = (models) => {
-      event_list.belongsTo(models.To_do_list, {
-        foreignKey: 'listId',
+      event_list.belongsTo(models.User, {
+        foreignKey: 'userId',
   
       });
-    };
+    }
 
     return event_list;
   };

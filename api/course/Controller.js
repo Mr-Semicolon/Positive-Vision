@@ -10,18 +10,20 @@ class CourseController extends BaseController {
   async createCourseController(req,res,next)
     {
         const{
-            name,
-            description,
-            hours,
-            coachId,
+          name,
+          description,
+          hours,
+          category,
+            
         }=req.body;
-        //const coachId=res.locals;
+        const coachId=res.locals.id;
 
         const result =await createCourseService(
-            name,
-            description,
-            hours,
-            coachId,
+          coachId,
+          name,
+          description,
+          hours,
+          category,
         );
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(

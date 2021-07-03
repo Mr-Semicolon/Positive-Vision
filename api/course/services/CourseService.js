@@ -2,20 +2,27 @@ const {
     Course
   } = require("../../../models");
 
-
+  const {
+    paginationwithCondition,
+  } = require("../../shared/paginationWithCondition");
     async function createCourseService(
+      coachId,
       name,
       description,
       hours,
-      coachId,
+      category,
+     
+    
+     
       
       )
     {
       let theCourse=await Course.create({
-          name,
-          description,
-          hours,
-          coachId,
+        coachId,
+        name,
+        description,
+        hours,
+        category,
       });
 
       return{
@@ -78,9 +85,31 @@ const {
     };
    }
 
+/*
+   async function getAllCourses(coachId) {
+     let resultData ={};
+     const returnedResult = await Course.findOne({
+       where :{
+         coachId:coachId,
+       },
+     });
+     
+     if (!returnedResult){
+       return {message :"you haven't uploaded any course yet", status:400}
+     }
+
+   
+   
+   
+    }*/
+
   module.exports = {
       createCourseService,
       deleteCourseService,
       editCourseService,
-      getCourseService,
+      getCourseService,  
+     /* getAllCourses,
+      getAllCoursesByCategory,
+   
+      searchOnCourses,*/
   };

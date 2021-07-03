@@ -1,95 +1,154 @@
-/*const {
+const {
 
-    createBlogPostService, deleteBlogPostService,editBlogPostService, getBlogPostService,
-  } = require("./services/createBlogPostServices");
+  addEventToToDoList,
+  getAllEvents,
+  getEvent,
+  deleteEvent,
+  editEvent,
+  markOnEvent,
+  } = require("./services/createToDoListServices");
   
   
   const { BaseController } = require("../");
-  
-  class BlogPostController extends BaseController {
-    async createBlogPostController(req,res,next)
-      {
-          const{
-            coachId,
-            image,
-            title,
-            content,
-            
-          }=req.body;
-          //const coachId=res.locals;
-  
-          const result =await createBlogPostService(
-            coachId,
-            image,
-            title,
-            content,
-            
-          );
-          if (result.status) {
-              const response = this.setStatusCode(result.status).sendErrorResponse(
-              result.message
-          );
-              return next(response);
-          }
-          const response = this.setStatusCode(200).sendResponse(
-              result.message,
-              result.data
-          );
-          return res.json(response);
-      }
-      async deleteBlogPostController(req,res,next)
-      {
-          const{
-              blogpostId,
-          }=req.query;
-          const result=await deleteBlogPostService(blogpostId);
-          if (result.status) {
-              const response = this.setStatusCode(result.status).sendErrorResponse(
-              result.message
-          );
-              return next(response);
-          }
-          const response = this.setStatusCode(200).sendResponse(
-              result.message,
-              result.data
-          );
-          return res.json(response);
-      }
-  
-      async editBlogPostController(req,res,next)
-      {
-          const { blogpostId } = req.query;
-          const result=await editBlogPostService(blogpostId,req.body);
-          if (result.status) {
-              const response = this.setStatusCode(result.status).sendErrorResponse(
-                result.message
-              );
-              return next(response);
-            }
-            const response = this.setStatusCode(200).sendResponse(
-              result.message,
-              result.data
-            );
-            return res.json(response);
-      }
-      async getBlogPostController(req,res,next)
+ 
+  class ToDoListController extends BaseController {
+    async addEventController(req,res,next)
     {
-        const { blogpostId } = req.query;
-        const result=await getBlogPostService(blogpostId);
+        const{
+         name,
+         description,
+          
+        }=req.body;
+        const userId=res.locals.id;
+
+        const result =await addEventToToDoList(
+          name,
+          description,
+          userId,
+          
+        );
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(
-              result.message
-            );
+            result.message
+        );
             return next(response);
-          }
-          const response = this.setStatusCode(200).sendResponse(
+        }
+        const response = this.setStatusCode(200).sendResponse(
             result.message,
             result.data
-          );
-          return res.json(response);
+        );
+        return res.json(response);
     }
-   
+  
+    async getAllEventsController(req,res,next)
+    {
+        
+        const userId=res.locals.id;
+
+        const result =await getAllEvents(
+        
+          userId,
+          
+        );
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+            result.message
+        );
+            return next(response);
+        }
+        const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+        );
+        return res.json(response);
+    }
+
+
+    async getEventController(req,res,next)
+    {
+        
+      const { eventId } = req.query;
+
+        const result =await getEvent(
+          eventId
+        );
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+            result.message
+        );
+            return next(response);
+        }
+        const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+        );
+        return res.json(response);
+    }
+
+    async deleteEventController(req,res,next)
+    {
+        
+      const { eventId } = req.query;
+
+        const result =await deleteEvent(
+          eventId
+        );
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+            result.message
+        );
+            return next(response);
+        }
+        const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+        );
+        return res.json(response);
+    }
+
+    async editEventController(req,res,next)
+    {
+        
+      const { eventId } = req.query;
+
+        const result =await editEvent(
+          eventId,req.body
+        );
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+            result.message
+        );
+            return next(response);
+        }
+        const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+        );
+        return res.json(response);
+    }
+  
+  
+    async markEventController(req,res,next)
+    {
+        
+      const { eventId } = req.query;
+
+        const result =await markOnEvent(
+          eventId
+        );
+        if (result.status) {
+            const response = this.setStatusCode(result.status).sendErrorResponse(
+            result.message
+        );
+            return next(response);
+        }
+        const response = this.setStatusCode(200).sendResponse(
+            result.message,
+            result.data
+        );
+        return res.json(response);
+    }
+  
   }
   
-  module.exports = new BlogPostController();
-  */
+  module.exports = new ToDoListController();

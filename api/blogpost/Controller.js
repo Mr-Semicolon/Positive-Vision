@@ -10,13 +10,12 @@ const {
     async createBlogPostController(req,res,next)
       {
           const{
-            coachId,
             image,
             title,
             content,
             
           }=req.body;
-          //const coachId=res.locals;
+          const coachId=res.locals.id;
   
           const result =await createBlogPostService(
             coachId,

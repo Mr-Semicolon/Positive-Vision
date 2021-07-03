@@ -29,12 +29,12 @@ module.exports = {
    },
 
 
-   listId:{
+   userId:{
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
       model: {
-        tableName: 'to_do_list',
+        tableName: 'user',
       },
       key: 'id',
     },

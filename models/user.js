@@ -103,9 +103,9 @@ module.exports = function (sequelize, DataTypes) {
       as: "R_appointment_user",
     });
   
-    user.hasMany(models.To_do_list, {
+    user.hasMany(models.Event_list, {
       foreignKey: "userId",
-      as: "R_list_user",
+      as: "R_event_user",
     });
 
 

@@ -1,50 +1,68 @@
-/*const router = require("express-promise-router")();
-const BlogPostController = require("./Controller");
+const router = require("express-promise-router")();
+const ToDoListController = require("./Controller");
 const { validator } = require("../../middelwares/validator");
+const {isAuthorized} =require("../../middelwares/authorization");
 
 const {
-  createBlogPostSchema,
-  deleteBlogPostSchema,
-  editBlogPostSchema,
-  getBlogPostSchema,
+  addEventSchema,
+  deleteEventSchema,
+  getEventSchema,
+  editEventSchema,
+  markEventSchema,
  
 } = require("./schema");
 
-const blogpostRoute = {
-  BaseRoute: "/blogposts",
+const toDoListRoute = {
+  BaseRoute: "/to-do-list",
   root: "/",
-  createBlogPost: "/add-blogpost",
-  deleteBlogPost: "/delete-blogpost",
-  editBlogPost:"/edit-blogpost",
-  getBlogPost:"/get-blogpost",
-  
+  addEvent: "/add-Event",
+  deleteEvent: "/delete-Event",
+  editEvent:"/edit-Event",
+  getEvent:"/get-Event",
+  markEvent:"/mark-Event",
+  getAllEvent:"/all-event",
 };
 
 router.post(
-  blogpostRoute.createBlogPost,
-  validator(createBlogPostSchema),
-  BlogPostController.createBlogPostController.bind(BlogPostController)
+  toDoListRoute.addEvent,
+  validator(addEventSchema),
+  isAuthorized,
+  ToDoListController.addEventController.bind(ToDoListController)
+);
+
+router.post(
+  toDoListRoute.markEvent,
+  validator(markEventSchema),
+  isAuthorized,
+  ToDoListController.markEventController.bind(ToDoListController)
 );
 
 router.delete(
-  blogpostRoute.deleteBlogPost,
-  validator(deleteBlogPostSchema),
-  BlogPostController.deleteBlogPostController.bind(BlogPostController)
+  toDoListRoute.deleteEvent,
+  validator(deleteEventSchema),
+  isAuthorized,
+  ToDoListController.deleteEventController.bind(ToDoListController)
 );
 
 router.put(
-  blogpostRoute.editBlogPost,
-  validator(editBlogPostSchema),
-  BlogPostController.editBlogPostController.bind(BlogPostController)
+  toDoListRoute.editEvent,
+  validator(editEventSchema),
+  isAuthorized,
+  ToDoListController.editEventController.bind(ToDoListController)
 );
 router.get(
-  blogpostRoute.getBlogPost,
-  validator(getBlogPostSchema),
-  BlogPostController.getBlogPostController.bind(BlogPostController)
+  toDoListRoute.getEvent,
+  validator(getEventSchema),
+  isAuthorized,
+  ToDoListController.getEventController.bind(ToDoListController)
 );
 
+router.get(
+  toDoListRoute.getAllEvent,
+  isAuthorized,
+  ToDoListController.getAllEventsController.bind(ToDoListController)
+);
 module.exports = {
-  blogpostRouter: router,
-  blogpostRoute,
+  toDoListRouter: router,
+  toDoListRoute,
 };
-*/

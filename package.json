@@ -36,6 +36,7 @@
     "express-promise-router": "^4.0.1",
     "express-rate-limit": "^5.2.3",
     "express-session": "^1.17.1",
+    "firebase-admin": "^9.10.0",
     "helmet": "^4.4.1",
     "joi": "^13.0.2",
     "jsonwebtoken": "^8.5.1",

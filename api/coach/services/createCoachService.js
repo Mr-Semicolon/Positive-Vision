@@ -191,7 +191,7 @@ async function confirmCoachEmailService(email,theString){
     email: checkEmail.email,
     accountType: checkEmail.accountType,
     isActiveAccount: checkEmail.isActiveAccount,
-    token,
+    token:token,
   };
   
   return {

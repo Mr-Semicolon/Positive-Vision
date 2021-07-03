@@ -1,6 +1,6 @@
 const {
   DEFAULT_LIMIT: PAGINATION_LIMIT_DEFAULT,
-} = require("../../../config/serverConfig");
+} = require("../../config/serverConfig");
 //  option argument is an object with three keys
 //  the first key is the condition where
 //  the second key is the attributes

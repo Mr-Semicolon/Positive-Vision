@@ -26,6 +26,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      category:{
+        type:DataTypes.STRING,
+        allowNull:false,
+      },
         createdAt: {
           type: DataTypes.DATE,
           allowNull: true,
