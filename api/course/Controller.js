@@ -17,6 +17,7 @@ class CourseController extends BaseController {
             
         }=req.body;
         const coachId=res.locals.id;
+        const fileData = req.files;
 
         const result =await createCourseService(
           coachId,
@@ -24,6 +25,7 @@ class CourseController extends BaseController {
           description,
           hours,
           category,
+          fileData,
         );
         if (result.status) {
             const response = this.setStatusCode(result.status).sendErrorResponse(

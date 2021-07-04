@@ -9,6 +9,8 @@ const {pythonExcute} = require('../../../machine-learning/testModel')
 const {
   User,
   UserPersonality,
+  Coach,
+  Appointment,
 } = require("../../../models");
 
 
@@ -239,8 +241,132 @@ if(checkEmail.isMailVerified === false){
 }
 
 
+async function chooseCoach(userId,coachId) {
+  const theUser = await User.findOne({
+    where:{id:userId,}
+  });
+  const searchCoach = await  Coach.findOne({
+    where:{
+      id:coachId
+    }
+  });
+  if(!searchCoach){
+    return {
+      message: "this coach not found",
+      status: 400,
+    };
+  }
+  if(theUser.coachId){
+    return {
+      message: "there is already coach assigned ",
+      status: 201,
+    };
+  }
+  theUser.update({coachId:coachId});
+  return {
+    message: `The user has selected coach successfully`
+  };
+}
+
+
+async function getAllCoaches() {
+  const theCoaches = await Coach.findAll();
+
+  if(!theCoaches){
+    return {
+      message: "no coach found",
+      status: 404,
+    };
+  }
+ 
+  return {
+    message: `The user has selected coach successfully`,
+    data: theCoaches
+  };
+}
+
+
+async function addAppoin(name,date,time,hours,userId) {
+const theUser = await User.findOne({
+  where :{
+    id:userId
+  }
+});
+if(!theUser){
+  return {
+    message: "no user found",
+    status: 404,
+  };
+}
+
+if(!theUser.coachId){
+  return {
+    message: "you cant add appointment and you haven't coach assigned",
+    status: 201,
+  };
+}
+
+const Appoi = await Appointment.create({
+name,
+date,
+time,
+hours,
+isConfirm:false,
+coachId:theUser.coachId,
+userId,
+});
+return {
+  message: `The Appointment has been created successfully`,
+  data: Appoi,
+};
+}
+
+
+
+async function deleteAppoin(appoiId) {
+  let checkId=await Appointment.findOne({where:{id:appoiId}})
+       if(!checkId){
+           return{
+               message:"The Appointment not exist",
+               status: 404,
+           };
+       }
+       await checkId.destroy();
+       return{
+        message: "The Appointment has been deleted successfully"
+    };
+}
+
+
+async function getAllAppoin(userId) {
+  let appointments=await Appointment.findAll({where:{userId:userId}})
+       if(!appointments){
+           return{
+               message:"no appointment  exist",
+               status: 404,
+           };
+       }
+       return{
+        message: "The Appointment has been listed successfully",
+        data: appointments
+    };
+}
+
 module.exports = {
   createUserService,
   confirmEmailService,
   loginUserService,
+  chooseCoach,
+  getAllCoaches,
+  addAppoin,
+  deleteAppoin,
+  getAllAppoin,
+  /*
+    getAllAppoin
+    showEnrolledCourses,  //table
+    enrollCourse, //table
+    rateBlogpost, //table zy el enroll
+    showRatedBlogposts,
+    
+    */
 };

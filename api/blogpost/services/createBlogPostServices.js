@@ -84,4 +84,7 @@ const {
       deleteBlogPostService,
       editBlogPostService,
       getBlogPostService,
+      /* getAllBlogpost,
+      getAllBlogpostByRating, // rate .. ta3del fe el model w el migration
+      searchOnBlogpost,*/
   };

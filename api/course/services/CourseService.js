@@ -1,6 +1,18 @@
 const {
-    Course
+    Course,
+    CourseMedia
   } = require("../../../models");
+  const {
+    FILE_TYPES_IMAGE,
+    IMAGE_FILE_SIZE,
+    VIDEO_FILE_SIZE,
+    FILE_TYPES_VIDEO,
+  } = require("../../../config/serverConfig");
+
+  const {
+    uploadToS3,
+    deleteFromS3,
+    getFileKeyFromS3Location, }=require("../../shared/util");
 
   const {
     paginationwithCondition,
@@ -12,11 +24,12 @@ const {
       hours,
       category,
      
-    
+      fileData,
      
       
       )
     {
+      let resultData = {};
       let theCourse=await Course.create({
         coachId,
         name,
@@ -25,9 +38,68 @@ const {
         category,
       });
 
+      resultData["course"] = theCourse;
+      //getting all files of array
+  if (fileData) {
+    const filesFromAws = await Promise.all(
+      await fileData.map(async (file) => {
+        const [, fileExt] = file.mimetype.split("/");
+        const imageTypes = FILE_TYPES_IMAGE.split("#");
+        const videoTypes = FILE_TYPES_VIDEO;
+
+        let mediaType = "file";
+        if (imageTypes.includes(`.${fileExt}`)) {
+          mediaType = "image";
+        } else if (videoTypes.includes(`.${fileExt}`)) {
+          mediaType = "video";
+        } else {
+          return {
+            message: `The file Extention .${fileExt} is not accepted`,
+            status: 400,
+          };
+        }
+        if (mediaType === "image" && file.size > IMAGE_FILE_SIZE) {
+          return {
+            message: `${fileExt} files should be less than ${IMAGE_FILE_SIZE} bytes`,
+            status: 400,
+          };
+        } else if (mediaType === "video" && file.size > VIDEO_FILE_SIZE) {
+          return {
+            message: `${fileExt} files should be less than ${VIDEO_FILE_SIZE} bytes`,
+            status: 400,
+          };
+        }
+        const courseMedia = await uploadToS3(file.buffer, fileExt);
+        if (courseMedia.message) {
+          return {
+            message: courseMedia.message,
+            status: 400,
+          };
+        }
+        return await CourseMedia.create({
+         
+          media: courseMedia, 
+          description: theCourse.description,
+          courseId: theCourse.id,
+        });
+      })
+    );
+    const errorFile = await filesFromAws.find((file) => file.message);
+    console.log(errorFile);
+    if (errorFile != undefined) {
+      result.destroy();
+      console.log(result);
+      return {
+        message: `test:files should be less than ${VIDEO_FILE_SIZE} bytes`,
+        status: 400,
+      };
+    }
+    resultData["course-media"] = filesFromAws;
+  }
+
       return{
           message: "The Course has been created successfully",
-          data: theCourse,
+          data: resultData,
       };
    }
 
@@ -110,6 +182,7 @@ const {
       getCourseService,  
      /* getAllCourses,
       getAllCoursesByCategory,
-   
+       getAllCoursesByTime,
+      getAllCoursesByEnrollNumber,   //nzwd fe el model w el migrating el Enroll Number
       searchOnCourses,*/
   };

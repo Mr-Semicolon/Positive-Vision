@@ -31,4 +31,9 @@ const {
 
   module.exports = {
       getPersonalityService,
+      /*
+      getMyCoachInfo,
+      getHighRatedBlogPost,
+      getHighMostEnrolledCourse,
+      */
   };

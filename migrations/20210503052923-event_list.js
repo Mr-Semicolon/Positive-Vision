@@ -41,6 +41,14 @@ module.exports = {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   },
+  createdAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
 
   }),
   down: (queryInterface) => queryInterface.dropTable('event_list'),

@@ -38,6 +38,15 @@ module.exports = {
     onDelete: 'CASCADE',
   },
 
+  createdAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+  },
+
 
   }),
   down: (queryInterface) => queryInterface.dropTable('courseMedia'),

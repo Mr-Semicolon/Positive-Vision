@@ -16,23 +16,26 @@ module.exports = {
 
    },
    date:{
-    type:Sequelize.DATE,
+    type:Sequelize.STRING,
     allowNull:true,
 
    },
 
    time:{
-    type:Sequelize.TIME,
+    type:Sequelize.STRING,
     allowNull:true,
 
    },
    hours:{
-    type:Sequelize.INTEGER,
+    type:Sequelize.STRING,
     allowNull:true,
 
    },
 
-
+   isConfirm:{
+    type:Sequelize.BOOLEAN,
+    allowNull:true,
+   },
 
    coachId:{
     type: Sequelize.INTEGER,

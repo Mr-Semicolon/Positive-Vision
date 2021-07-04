@@ -15,19 +15,23 @@ module.exports = function (sequelize, DataTypes) {
           },
           
           date: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: true,
           },
 
           time: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: true,
           },
 
           hours: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true,
           },
+          isConfirm:{
+            type:DataTypes.BOOLEAN,
+            allowNull:true,
+           },
 
           coachId:{
             type:DataTypes.INTEGER,
@@ -43,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
             type:DataTypes.INTEGER,
             allowNull:false,
             references: {
-              model: 'appointment',
+              model: 'user',
               key: 'id',
             }
 

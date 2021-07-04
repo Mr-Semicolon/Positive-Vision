@@ -202,5 +202,16 @@ async function confirmCoachEmailService(email,theString){
   module.exports = {
     createCoachService,
     confirmCoachEmailService,
-    loginCoachService
+    loginCoachService,
+    /*
+    viewUserToDoList,
+    viewUserPersonality,
+    viewAllAppointment,
+    confirmAppointment,
+    viewMyCourses,
+    viewMyBlogposts,
+    getFirstThreeCourses,
+    getFirstThreeBlogposts,
+    viewEnrolledPeopleToCourses
+    */
   };
