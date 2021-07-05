@@ -68,12 +68,7 @@ const Signup=()=>{
             console.error(err.message);      
           }
           
-        
-       
-           
-           
-        
-
+     
     }
     if(success){
         return <Redirect to="/activation"></Redirect>
