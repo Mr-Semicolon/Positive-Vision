@@ -12,7 +12,7 @@ const {
           const{
           
             title,
-            content,
+            contentt,
             
           }=req.body;
         
@@ -21,7 +21,7 @@ const {
           const result =await createBlogPostService(
             coachId,
             title,
-            content,
+            contentt,
             fileData,
           );
           if (result.status) {

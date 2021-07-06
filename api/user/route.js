@@ -24,12 +24,25 @@ const userRoute = {
   deleteAppointment:"/delete-appointment",
   getAllCoaches:"/all-coaches",
   getAllAppointments:"/all-appointments",
+  getAllBlogPost:"/all-blogpost",
+  getAllCourse:"/all-course"
 };
 
 router.post(
   userRoute.createUser,
   validator(createUserSchema),
   UserController.createUserController.bind(UserController)
+);
+router.get(
+  userRoute.getAllBlogPost,
+  isAuthorized,
+  UserController.getAllBlogPostController.bind(UserController)
+);
+
+router.get(
+  userRoute.getAllCourse,
+  isAuthorized,
+  UserController.getAllCourseController.bind(UserController)
 );
 
 router.post(

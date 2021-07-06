@@ -17,7 +17,7 @@ const {
     async function createBlogPostService(
       coachId,
       title,
-      content,
+      contentt,
       fileData,
       
       
@@ -27,7 +27,7 @@ const {
       let theBlogPost=await BlogPost.create({
         coachId,
         title,
-        content,
+        contentt,
        
       });
       resultData["blogpost"] = theBlogPost;

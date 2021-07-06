@@ -11,6 +11,10 @@ const {
   UserPersonality,
   Coach,
   Appointment,
+  BlogPost,
+  BlogPostMedia,
+  Course,
+  CourseMedia,
 } = require("../../../models");
 
 
@@ -379,6 +383,50 @@ async function getAllAppoin(userId) {
         message: "The Appointment has been listed successfully",
         data: appointments
     };
+
+
+    
+}
+
+
+async function getAllBlogpostForUser() {
+  let allBlogpost=await BlogPost.findAll({include: [
+    { model: BlogPostMedia, as: "media" },
+  ],})
+       if(!allBlogpost){
+           return{
+               message:"no BlogPostt  exist",
+               status: 404,
+           };
+       }
+       return{
+        message: "The BlogPosts has been listed successfully",
+        data: allBlogpost
+    };
+
+
+    
+}
+
+
+
+async function getAllCoursesForUser() {
+  let allCourses=await Course.findAll({include: [
+    { model: CourseMedia, as: "media" },
+  ],})
+       if(!allCourses){
+           return{
+               message:"no Courses  exist",
+               status: 404,
+           };
+       }
+       return{
+        message: "The Courses has been listed successfully",
+        data: allCourses
+    };
+
+
+    
 }
 
 module.exports = {
@@ -390,8 +438,8 @@ module.exports = {
   addAppoin,
   deleteAppoin,
   getAllAppoin,
- // getAllBlogpostForUser,
-  //getAllCoursesForUser,
+  getAllBlogpostForUser,
+  getAllCoursesForUser,
   /*
   
     showEnrolledCourses,  //table

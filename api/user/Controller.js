@@ -7,6 +7,8 @@ const {
   addAppoin,
   deleteAppoin,
   getAllAppoin,
+  getAllBlogpostForUser,
+  getAllCoursesForUser,
 } = require("./services/createUserService");
 
 
@@ -209,6 +211,47 @@ class UserController extends BaseController {
     return res.json(response);
   }
 
+
+  async getAllBlogPostController(req, res, next) {
+   
+    
+    
+
+    const result = await getAllBlogpostForUser();
+    if (result.status) {
+      const response = this.setStatusCode(result.status).sendErrorResponse(
+        result.message
+      );
+      return next(response);
+    }
+
+    const response = this.setStatusCode(200).sendResponse(
+      result.message,
+      result.data
+    );
+    return res.json(response);
+  }
+
+
+  async getAllCourseController(req, res, next) {
+   
+    
+    
+
+    const result = await getAllCoursesForUser();
+    if (result.status) {
+      const response = this.setStatusCode(result.status).sendErrorResponse(
+        result.message
+      );
+      return next(response);
+    }
+
+    const response = this.setStatusCode(200).sendResponse(
+      result.message,
+      result.data
+    );
+    return res.json(response);
+  }
 
  
 }

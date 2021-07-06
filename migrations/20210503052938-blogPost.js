@@ -28,7 +28,7 @@ module.exports = {
       allowNull: true,
       
     },
-    content: {
+    contentt: {
       type: Sequelize.STRING,
       allowNull: true,
      
