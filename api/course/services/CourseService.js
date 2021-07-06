@@ -87,8 +87,8 @@ const {
     const errorFile = await filesFromAws.find((file) => file.message);
     console.log(errorFile);
     if (errorFile != undefined) {
-      result.destroy();
-      console.log(result);
+      theCourse.destroy();
+      console.log(theCourse);
       return {
         message: `test:files should be less than ${VIDEO_FILE_SIZE} bytes`,
         status: 400,

@@ -10,19 +10,19 @@ const {
     async createBlogPostController(req,res,next)
       {
           const{
-            image,
+          
             title,
             content,
             
           }=req.body;
+        
           const coachId=res.locals.id;
-  
+           const fileData = req.files;
           const result =await createBlogPostService(
             coachId,
-            image,
             title,
             content,
-            
+            fileData,
           );
           if (result.status) {
               const response = this.setStatusCode(result.status).sendErrorResponse(

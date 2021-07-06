@@ -352,6 +352,35 @@ async function getAllAppoin(userId) {
     };
 }
 
+
+async function getAllAppoin(userId) {
+  let appointments=await Appointment.findAll({where:{userId:userId}})
+       if(!appointments){
+           return{
+               message:"no appointment  exist",
+               status: 404,
+           };
+       }
+       return{
+        message: "The Appointment has been listed successfully",
+        data: appointments
+    };
+}
+
+async function getAllAppoin(userId) {
+  let appointments=await Appointment.findAll({where:{userId:userId}})
+       if(!appointments){
+           return{
+               message:"no appointment  exist",
+               status: 404,
+           };
+       }
+       return{
+        message: "The Appointment has been listed successfully",
+        data: appointments
+    };
+}
+
 module.exports = {
   createUserService,
   confirmEmailService,
@@ -361,8 +390,10 @@ module.exports = {
   addAppoin,
   deleteAppoin,
   getAllAppoin,
+ // getAllBlogpostForUser,
+  //getAllCoursesForUser,
   /*
-    getAllAppoin
+  
     showEnrolledCourses,  //table
     enrollCourse, //table
     rateBlogpost, //table zy el enroll

@@ -22,11 +22,7 @@ module.exports = {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
-    image: {
-      type: Sequelize.STRING,
-      allowNull: true,
-      defaultValue: DEFAULT_USER_IMAGE_URL,
-    },
+    
     title: {
       type: Sequelize.STRING,
       allowNull: true,

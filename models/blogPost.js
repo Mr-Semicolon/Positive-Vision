@@ -18,11 +18,7 @@ module.exports = function (sequelize, DataTypes) {
               key: 'id',
             },
           },
-          image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            defaultValue: DEFAULT_USER_IMAGE_URL,
-          },
+       
           title: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -53,6 +49,11 @@ module.exports = function (sequelize, DataTypes) {
           foreignKey: 'coachId',
     
         });
+        
+  blogPost.hasMany(models.BlogPostMedia, {
+    foreignKey: "blogPostId",
+    as: "media",
+  });
     
     }
 
