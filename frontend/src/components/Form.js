@@ -4,6 +4,9 @@ import React, {  useState } from "react";
 const Form = ({ setstatus,inputtxt, setinputtxt, todos, settodos }) => {
   
       const [name, setnamee] = useState(" ");
+      const [description, setdescription] = useState(" ");
+      
+     
      
       const [success, setsuccess] = useState(null);
       const [failed, setfailed] = useState("");
@@ -38,9 +41,11 @@ const Form = ({ setstatus,inputtxt, setinputtxt, todos, settodos }) => {
         withCredentials: true,
         body: JSON.stringify({
           name,
+          description
         
         }),
       });
+      setdescription("")
       const content = await response.json();
       try {
         setsuccess(content.message);
@@ -58,18 +63,25 @@ const Form = ({ setstatus,inputtxt, setinputtxt, todos, settodos }) => {
   return (
     <div>
       <form className="todoform mb-5">
-        <input 
+        <input
           value={inputtxt}
           onChange={(e) => setnamee(e.target.value)}
           onChangeCapture={inputtxtHandler}
           type="text"
           className="todo-input"
+          placeholder="Your plan for today..."
         />
+        <input
+          className="ml-3"
+          value={description}
+          onChange={(e) => setdescription(e.target.value)}
+          placeholder="Description"
+        ></input>
 
         <button
           onClick={submitTodoHandler}
           onClickCapture={submit}
-          className="todo-button"
+          className="todo-button ml-3"
           type="submit"
         >
           <i className="fas fa-plus-square"></i>
@@ -83,7 +95,6 @@ const Form = ({ setstatus,inputtxt, setinputtxt, todos, settodos }) => {
           </select>
         </div>
       </form>
-      
     </div>
   );
 };

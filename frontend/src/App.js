@@ -19,6 +19,7 @@ import course from './screens/course';
 import createCourse from './screens/createCourse';
 import createBlogpost from './screens/createBlogpost';
 import testtodo from './screens/testtodo';
+import appointments from './screens/appointments';
 
 
 
@@ -51,6 +52,7 @@ function App() {
                     <Route path="/coachsignup" component={CoachSingUp}></Route>
                     <Route path="/coachlogin" component={coachlogin}></Route>
                     <Route path="/testtodo" component={testtodo}></Route>
+                    <Route path="/appointments" component={appointments}></Route>
 
                     <Route
                       path="/coachactivation"

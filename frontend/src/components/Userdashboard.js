@@ -83,14 +83,14 @@ export default function Userdashboard(){
 
                 <div>
                   <Link to="/todolist">
-                    <img src={live} alt="" />
+                    <img src={last} alt="" />
                   </Link>
                 </div>
                 <div>
                   <img src={live2} alt="" />
                 </div>
                 <div>
-                  <img src={last} alt="" />
+                  <img src={live} alt="" />
                 </div>
                 <div>
                   <img src={settings} alt="" />
